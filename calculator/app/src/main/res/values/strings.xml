@@ -1,3 +1,22 @@
 <resources>
     <string name="app_name">Calculator</string>
+    <string name="buttonEquals">=</string>
+    <string name="buttonPt">.</string>
+    <string name="button0">0</string>
+    <string name="buttonPlus">+</string>
+    <string name="button3">3</string>
+    <string name="button2">2</string>
+    <string name="button1">1</string>
+    <string name="bottonMinus">-</string>
+    <string name="botton6">6</string>
+    <string name="botton5">5</string>
+    <string name="botton4">4</string>
+    <string name="buttonX">X</string>
+    <string name="button9">9</string>
+    <string name="button8">8</string>
+    <string name="button7">7</string>
+    <string name="buttonDec">/</string>
+    <string name="buttonPercent">%</string>
+    <string name="bbuttonDel"><![CDATA[<--]]></string>
+    <string name="buttonClear">C</string>
 </resources>
