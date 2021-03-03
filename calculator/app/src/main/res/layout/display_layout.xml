@@ -7,10 +7,12 @@
     android:layout_margin="20dp">
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/display"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@drawable/ramka"
         android:text=""
-        android:background="@drawable/calculator"
-        />
+        android:gravity="center"
+        android:textColor="#F8F8F8"
+        android:textSize="50sp" />
 </androidx.constraintlayout.widget.ConstraintLayout>
