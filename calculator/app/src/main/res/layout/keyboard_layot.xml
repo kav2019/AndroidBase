@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_margin="20dp"
-    android:background="#C68E8E">
+    android:background="#052f61">
 
 
     <Button
@@ -15,7 +15,8 @@
         android:text="@string/buttonClear"
         app:layout_constraintBottom_toTopOf="@id/buttonX"
         app:layout_constraintEnd_toStartOf="@id/buttonDel"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        android:onClick="clear"/>
 
     <Button
         android:id="@+id/buttonDel"
@@ -24,7 +25,8 @@
         android:text="@string/bbuttonDel"
         app:layout_constraintBottom_toTopOf="@id/buttonX"
         app:layout_constraintEnd_toStartOf="@id/buttonPercent"
-        app:layout_constraintStart_toEndOf="@id/buttonClear" />
+        app:layout_constraintStart_toEndOf="@id/buttonClear"
+        android:onClick="delSimbol"/>
 
     <Button
         android:id="@+id/buttonPercent"
@@ -34,7 +36,8 @@
         app:layout_constraintBottom_toTopOf="@id/buttonX"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintEnd_toStartOf="@id/buttonDec"
-        app:layout_constraintStart_toEndOf="@id/buttonDel" />
+        app:layout_constraintStart_toEndOf="@id/buttonDel"
+        android:onClick="percent"/>
 
     <Button
         android:id="@+id/buttonDec"
@@ -43,7 +46,8 @@
         android:text="@string/buttonDec"
         app:layout_constraintBottom_toTopOf="@id/buttonX"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/buttonPercent" />
+        app:layout_constraintStart_toEndOf="@id/buttonPercent"
+        android:onClick="divide"/>
 
     <Button
         android:id="@+id/button7"
@@ -52,7 +56,8 @@
         android:text="@string/button7"
         app:layout_constraintBottom_toTopOf="@id/buttonMinus"
         app:layout_constraintEnd_toStartOf="@id/button8"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        android:onClick="seven"/>
 
     <Button
         android:id="@+id/button8"
@@ -61,7 +66,8 @@
         android:text="@string/button8"
         app:layout_constraintBottom_toTopOf="@id/buttonMinus"
         app:layout_constraintEnd_toStartOf="@id/button9"
-        app:layout_constraintStart_toEndOf="@id/button7" />
+        app:layout_constraintStart_toEndOf="@id/button7"
+        android:onClick="eight"/>
 
     <Button
         android:id="@+id/button9"
@@ -70,7 +76,8 @@
         android:text="@string/button9"
         app:layout_constraintBottom_toTopOf="@id/buttonMinus"
         app:layout_constraintEnd_toStartOf="@id/buttonX"
-        app:layout_constraintStart_toEndOf="@id/button8" />
+        app:layout_constraintStart_toEndOf="@id/button8"
+        android:onClick="nine"/>
 
     <Button
         android:id="@+id/buttonX"
@@ -79,7 +86,8 @@
         android:text="@string/buttonX"
         app:layout_constraintBottom_toTopOf="@id/buttonMinus"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/button9" />
+        app:layout_constraintStart_toEndOf="@id/button9"
+        android:onClick="incrs"/>
 
     <Button
         android:id="@+id/button4"
@@ -88,7 +96,8 @@
         android:text="@string/botton4"
         app:layout_constraintBottom_toTopOf="@id/button1"
         app:layout_constraintEnd_toStartOf="@id/button5"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        android:onClick="four"/>
 
     <Button
         android:id="@+id/button5"
@@ -97,7 +106,8 @@
         android:text="@string/botton5"
         app:layout_constraintBottom_toTopOf="@id/button2"
         app:layout_constraintEnd_toStartOf="@id/button6"
-        app:layout_constraintStart_toEndOf="@id/button4" />
+        app:layout_constraintStart_toEndOf="@id/button4"
+        android:onClick="five"/>
 
     <Button
         android:id="@+id/button6"
@@ -106,7 +116,8 @@
         android:text="@string/botton6"
         app:layout_constraintBottom_toTopOf="@id/button3"
         app:layout_constraintEnd_toStartOf="@id/buttonMinus"
-        app:layout_constraintStart_toEndOf="@id/button5" />
+        app:layout_constraintStart_toEndOf="@id/button5"
+        android:onClick="six"/>
 
     <Button
         android:id="@+id/buttonMinus"
@@ -115,7 +126,8 @@
         android:text="@string/bottonMinus"
         app:layout_constraintBottom_toTopOf="@id/button1"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/button6" />
+        app:layout_constraintStart_toEndOf="@id/button6"
+        android:onClick="minus"/>
 
     <Button
         android:id="@+id/button1"
@@ -124,7 +136,8 @@
         android:text="@string/button1"
         app:layout_constraintBottom_toTopOf="@id/buttonPt"
         app:layout_constraintEnd_toStartOf="@id/button2"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        android:onClick="one"/>
 
     <Button
         android:id="@+id/button2"
@@ -133,7 +146,8 @@
         android:text="@string/button2"
         app:layout_constraintBottom_toTopOf="@id/buttonPt"
         app:layout_constraintEnd_toStartOf="@id/button3"
-        app:layout_constraintStart_toEndOf="@id/button1" />
+        app:layout_constraintStart_toEndOf="@id/button1"
+        android:onClick="two"/>
 
     <Button
         android:id="@+id/button3"
@@ -142,7 +156,8 @@
         android:text="@string/button3"
         app:layout_constraintBottom_toTopOf="@id/buttonPt"
         app:layout_constraintEnd_toStartOf="@id/buttonPlus"
-        app:layout_constraintStart_toEndOf="@id/button2" />
+        app:layout_constraintStart_toEndOf="@id/button2"
+        android:onClick="three"/>
 
     <Button
         android:id="@+id/buttonPlus"
@@ -151,7 +166,8 @@
         android:text="@string/buttonPlus"
         app:layout_constraintBottom_toTopOf="@id/buttonPt"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/button3" />
+        app:layout_constraintStart_toEndOf="@id/button3"
+        android:onClick="plus"/>
 
     <Button
         android:id="@+id/button0"
@@ -160,7 +176,8 @@
         android:text="@string/button0"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/buttonPt"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        android:onClick="zero"/>
 
     <Button
         android:id="@+id/buttonPt"
@@ -169,7 +186,8 @@
         android:text="@string/buttonPt"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/buttonEquals"
-        app:layout_constraintStart_toEndOf="@+id/button0" />
+        app:layout_constraintStart_toEndOf="@+id/button0"
+        android:onClick="point"/>
 
     <Button
         android:id="@+id/buttonEquals"
@@ -179,5 +197,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/buttonPt"
-        app:layout_constraintTop_toBottomOf="@id/button1" />
+        app:layout_constraintTop_toBottomOf="@id/button1"
+        android:onClick="equally"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
