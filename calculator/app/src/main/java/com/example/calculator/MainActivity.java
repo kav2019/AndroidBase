@@ -15,9 +15,8 @@ import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
-    public static final String pref = "prefs.xml";
-    public static final String pref_name = "theme";
-    SharedPreferences sharedPreferences;
+    public static final String pref = "prefs.xml"; // Имя настроек
+    public static final String pref_name = "theme"; // Имя параметра в настройках
 
 
     private TextView display;
@@ -243,23 +242,24 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        boolean isNighTheme = getSharedPreferences(pref, MODE_PRIVATE).getBoolean(pref_name, false);
+        boolean isNighTheme = getSharedPreferences(pref, MODE_PRIVATE).getBoolean(pref_name, false); //Устанавливаем тему по умолчанию
         if (isNighTheme){
             setTheme(R.style.myStyle);
         }else {
             setTheme(R.style.myStyleDay);
         }
+
         setContentView(R.layout.activity_main);
-
         display = findViewById(R.id.display);
-
         initialization(); // Инициализация кнопок и установка слушателей
-
 
         changeTheme.setOnCheckedChangeListener((buttonView, isCheced) -> {
             SharedPreferences sharedPreferences = getSharedPreferences(pref, MODE_PRIVATE);
             if(sharedPreferences.getBoolean(pref_name, false) != isCheced){
                 sharedPreferences.edit().putBoolean(pref_name, isCheced).apply();
+                recreate();
+            }else {
+                sharedPreferences.edit().putBoolean(pref_name, !isCheced).apply();
                 recreate();
             }
         });
