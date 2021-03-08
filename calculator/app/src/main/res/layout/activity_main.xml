@@ -16,10 +16,10 @@
             layout="@layout/display_layout"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1" />
+            android:layout_weight="0.5" />
 
         <include
-            layout="@layout/keyboard_layot"
+            layout="@layout/keyboard_layout_button"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"/>
