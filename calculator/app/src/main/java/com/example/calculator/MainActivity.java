@@ -1,23 +1,32 @@
 package com.example.calculator;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.widget.SwitchCompat;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.PersistableBundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.google.android.material.button.MaterialButton;
+
 public class MainActivity extends AppCompatActivity {
 
-    public static final String pref = "prefs.xml";
+    public static final String pref = "theme_app";
     public static final String pref_name = "theme";
-    SharedPreferences sharedPreferences;
+    private boolean isNighTheme;
+
+
+    public static final String KEY_INTENT = "key.intent";
+    public static final int CODE_INTENT = 1;
 
 
     private TextView display;
@@ -28,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
     private static final String KEY_DISPLAY = "display";//Ключ для результата вычесления
     private String result_display; //сохраняем результат вычисления
 
-    private SwitchCompat changeTheme;
+
     private Button buttonClear; // Кнопка очистить
     private Button buttonDel; // Кнопка удалить символ
     private Button buttonPercent; // Кнопка вычисления процента
@@ -243,7 +252,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        boolean isNighTheme = getSharedPreferences(pref, MODE_PRIVATE).getBoolean(pref_name, false);
+        isNighTheme = getSharedPreferences(pref, MODE_PRIVATE).getBoolean(pref_name, false);
         if (isNighTheme){
             setTheme(R.style.myStyle);
         }else {
@@ -256,16 +265,24 @@ public class MainActivity extends AppCompatActivity {
         initialization(); // Инициализация кнопок и установка слушателей
 
 
-        changeTheme.setOnCheckedChangeListener((buttonView, isCheced) -> {
-            SharedPreferences sharedPreferences = getSharedPreferences(pref, MODE_PRIVATE);
-            if(sharedPreferences.getBoolean(pref_name, false) != isCheced){
-                sharedPreferences.edit().putBoolean(pref_name, isCheced).apply();
-                recreate();
-            }
+
+//Добавление активити с настройками
+        MaterialButton buttonSettings = findViewById(R.id.buttonSettings);
+        buttonSettings.setOnClickListener((view) -> {
+            Intent intent = new Intent(this, Settings.class);
+            startActivityForResult(intent, CODE_INTENT);
         });
+
+
     }
 
-
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (data != null && resultCode == RESULT_OK){
+            recreate();
+        }
+    }
 
     @Override
     protected void onSaveInstanceState(Bundle state){ //Сохранение данных в бандла
@@ -292,7 +309,6 @@ public class MainActivity extends AppCompatActivity {
     // Инициализация кнопок и установка слушателей
     private void initialization(){
         //инициализируем поля
-        changeTheme = findViewById(R.id.themeKeybord);
         buttonClear = findViewById(R.id.buttonClear);
         buttonDel = findViewById(R.id.buttonDel);
         buttonPercent = findViewById(R.id.buttonPercent);

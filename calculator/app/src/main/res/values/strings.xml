@@ -20,4 +20,6 @@
     <string name="bbuttonDel"><![CDATA[<--]]></string>
     <string name="buttonClear">C</string>
     <string name="theme_keybord">Night/Day theme</string>
+    <string name="back">Back</string>
+    <string name="settings">Settings</string>
 </resources>

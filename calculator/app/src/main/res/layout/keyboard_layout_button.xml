@@ -143,10 +143,12 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-        <androidx.appcompat.widget.SwitchCompat
-            android:id="@+id/themeKeybord"
-            android:text="@string/theme_keybord"
-            style="@style/myStyle"/>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/buttonSettings"
+            android:text="@string/settings"
+            android:layout_weight="20"
+            style="@style/myStyle"  />
 
 
 

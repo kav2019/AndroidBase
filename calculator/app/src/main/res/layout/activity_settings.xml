@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".Settings"
+    style="@style/myStyle">
+
+    <androidx.appcompat.widget.SwitchCompat
+        android:id="@+id/themeSettings"
+        android:text="@string/theme_keybord"
+        android:layout_height="wrap_content"
+        android:layout_weight="10"
+
+        style="@style/myStyle"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/buttonBack"
+        android:text="@string/back"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+         />
+
+</androidx.appcompat.widget.LinearLayoutCompat>
