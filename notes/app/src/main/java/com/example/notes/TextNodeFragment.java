@@ -59,9 +59,14 @@ public class TextNodeFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        String[] textNodes = getResources().getStringArray(R.array.text_notes);
-        MaterialTextView textViewNode = view.findViewById(R.id.text_node_fragment);
-        textViewNode.setText(textNodes[mNodeInd]);
+        Log.e("BAGSSS", "Заходим в onViewCreated");
+//        String[] textNodes = getResources().getStringArray(R.array.text_notes); //Вытаскиваем списком текст заметок из строковых ресурсов
+        String display = NotesListFragment.notes[mNodeInd].getDisplayNote(); //Вытаскиваем из списка заметок нужную
+        Log.e("BAGSSS", "ПОЛУЧАЕМ ЗАМЕТКИ");
+        MaterialTextView textViewNode = view.findViewById(R.id.text_node_fragment); //Было R.id.text_node_fragment
+        Log.e("BAGSSS", "НАХОДИМ ЭКРАН");
+        textViewNode.setText(display); //ставим текст заметок БЫЛО:textNodes[mNodeInd]
+        Log.e("BAGSSS", "УСТАНАВЛИВАЕМ ЭКРАН");
     }
 
     @Override

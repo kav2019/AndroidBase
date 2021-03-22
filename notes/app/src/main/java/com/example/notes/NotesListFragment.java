@@ -24,6 +24,7 @@ import android.widget.TextView;
 public class NotesListFragment extends Fragment {
     private int mCurrentNotesIdx = -1;
     public static final String KEY_BUNDL = "key.save.index";
+    public static Notes[] notes;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -57,12 +58,18 @@ public class NotesListFragment extends Fragment {
         // Inflate the layout for this fragment
         ViewGroup view = (ViewGroup) inflater.inflate(R.layout.fragment_notes_list, container, false);
 
-        String[] notes = getResources().getStringArray(R.array.notes); //Получаем названия заметок из списка заметок
+        String[] notes_list_name = getResources().getStringArray(R.array.notes); //Получаем названия заметок из списка заметок из строковых ресурсов
+        String[] notes_list_text = getResources().getStringArray(R.array.text_notes); //Получаем тексты заметок из строковых ресурсов
+
+        notes = new Notes[notes_list_name.length]; //Добавляем экземпляры класса Заметки
+        for (int i = 0; i < notes_list_name.length; i++){
+            notes[i] = new Notes(notes_list_name[i], notes_list_text[i]);
+        }
 
         int indx = 0;
-        for (String note : notes){ //Проходимся по массиву который получили и выводим на экран
+        for (Notes note : notes){ //Проходимся по массиву который получили и выводим на экран НАЗВАНИЕ заметок
             TextView tv = new TextView(getContext()); //Создаем поле
-            tv.setText(note); // Выводим на экран то что получили из массива
+            tv.setText(note.getNameNotes()); // Выводим на экран то что получили из массива
             tv.setTextSize(30); //Устанавливаем размер текста
             final int textInx = indx;
             tv.setOnClickListener((view1) -> { //устанавливаем слушателя на создаваемую надпись
@@ -105,16 +112,37 @@ public class NotesListFragment extends Fragment {
     }
 
     private void goToActivity(int textInx){ //Переход в активити при портретном режиме
-        Intent intent = new Intent(getActivity(), TextNoteActivity.class);
-        intent.putExtra(TextNoteActivity.KEY_NOTES_INDEX, textInx);
-        startActivity(intent);
+//        Intent intent = new Intent(getActivity(), TextNoteActivity.class);
+//        intent.putExtra(TextNoteActivity.KEY_NOTES_INDEX, textInx);
+//        startActivity(intent);
+
+        TextNodeFragment fragment = TextNodeFragment.newInstance(textInx);
+        FragmentManager fragmentManager = requireActivity().getSupportFragmentManager();
+        Log.e("BAGSSS", "МЕНЕДЖЕР ФРАГМЕНТОВ");// Создаем менеджер фрагментов
+        FragmentTransaction transaction = fragmentManager.beginTransaction(); // Создаем транзакцию
+        Log.e("BAGSSS", "СОЗДАЕМ ТРАНЗАКЦИЮ");
+        transaction.addToBackStack("");
+        transaction.replace(R.id.fragment_notes, TextNodeFragment.newInstance(textInx));  // Меняем фрагмент //R.id.fragment_notes_list,
+        Log.e("BAGSSS", "МЕНЯЕМ ФРАГМЕНТ");
+        transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE); //Плавная смена фрагмента
+        Log.e("BAGSSS", "ПЛАВНАЯ СМЕНА");
+        transaction.commit();
+        Log.e("BAGSSS", "КОМИТ");
     }
 
     private void showTextToRight(int textInx){//Показываение текста заметки при ландшафтной орентации - справа
         FragmentManager fragmentManager = requireActivity().getSupportFragmentManager(); // Создаем менеджер фрагментов
+        Log.e("BAGSSS", "МЕНЕДЖЕР ФРАГМЕНТОВ");
         FragmentTransaction transaction = fragmentManager.beginTransaction(); // Создаем транзакцию
+        Log.e("BAGSSS", "СОЗДАЕМ ТРАНЗАКЦИЮ");
+        transaction.addToBackStack("");
         transaction.replace(R.id.text_node_fragment_land, TextNodeFragment.newInstance(textInx));  // Меняем фрагмент
+        Log.e("BAGSSS", "МЕНЯЕМ ФРАГМЕНТ");
         transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE); //Плавная смена фрагмента
-        transaction.commit();;
+        Log.e("BAGSSS", "ПЛАВНАЯ СМЕНА");
+        transaction.commit();
+        Log.e("BAGSSS", "КОМИТ");
     }
+
+
 }
