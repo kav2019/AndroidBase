@@ -1,5 +1,6 @@
 package com.example.notes;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
@@ -14,6 +15,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.TextView;
 
 /**
@@ -26,15 +28,6 @@ public class NotesListFragment extends Fragment {
     public static final String KEY_BUNDL = "key.save.index";
     public static Notes[] notes;
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
     public NotesListFragment() {
         // Required empty public constructor
     }
@@ -46,17 +39,14 @@ public class NotesListFragment extends Fragment {
         return fragment;
     }
 
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+
         ViewGroup view = (ViewGroup) inflater.inflate(R.layout.fragment_notes_list, container, false);
+
 
         String[] notes_list_name = getResources().getStringArray(R.array.notes); //Получаем названия заметок из списка заметок из строковых ресурсов
         String[] notes_list_text = getResources().getStringArray(R.array.text_notes); //Получаем тексты заметок из строковых ресурсов
@@ -68,7 +58,8 @@ public class NotesListFragment extends Fragment {
 
         int indx = 0;
         for (Notes note : notes){ //Проходимся по массиву который получили и выводим на экран НАЗВАНИЕ заметок
-            TextView tv = new TextView(getContext()); //Создаем поле
+            Context context = getContext();
+            TextView tv = new TextView(context); //Создаем поле
             tv.setText(note.getNameNotes()); // Выводим на экран то что получили из массива
             tv.setTextSize(30); //Устанавливаем размер текста
             final int textInx = indx;
@@ -83,10 +74,10 @@ public class NotesListFragment extends Fragment {
             view.addView(tv); //Добавляем в контейнер LinerLayout
             indx++;
         }
-
-
         return view;
     }
+
+
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle bundle) {
@@ -101,10 +92,11 @@ public class NotesListFragment extends Fragment {
 
     }
 
+
     @Override
     public void onSaveInstanceState(@NonNull Bundle bundle) {
-        super.onSaveInstanceState(bundle);
         bundle.putInt(KEY_BUNDL, mCurrentNotesIdx);
+        super.onSaveInstanceState(bundle);
     }
 
     private void setCurrentNoteIdx(int textInx) {
@@ -112,36 +104,26 @@ public class NotesListFragment extends Fragment {
     }
 
     private void goToActivity(int textInx){ //Переход в активити при портретном режиме
-//        Intent intent = new Intent(getActivity(), TextNoteActivity.class);
-//        intent.putExtra(TextNoteActivity.KEY_NOTES_INDEX, textInx);
-//        startActivity(intent);
+
 
         TextNodeFragment fragment = TextNodeFragment.newInstance(textInx);
         FragmentManager fragmentManager = requireActivity().getSupportFragmentManager();
-        Log.e("BAGSSS", "МЕНЕДЖЕР ФРАГМЕНТОВ");// Создаем менеджер фрагментов
         FragmentTransaction transaction = fragmentManager.beginTransaction(); // Создаем транзакцию
-        Log.e("BAGSSS", "СОЗДАЕМ ТРАНЗАКЦИЮ");
         transaction.addToBackStack("");
-        transaction.replace(R.id.fragment_notes, TextNodeFragment.newInstance(textInx));  // Меняем фрагмент //R.id.fragment_notes_list,
-        Log.e("BAGSSS", "МЕНЯЕМ ФРАГМЕНТ");
+        transaction.replace(R.id.fragment_notes, fragment);  // Меняем фрагмент //R.id.fragment_notes_list,
         transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE); //Плавная смена фрагмента
-        Log.e("BAGSSS", "ПЛАВНАЯ СМЕНА");
-        transaction.commit();
-        Log.e("BAGSSS", "КОМИТ");
+        transaction.commit();;
     }
 
     private void showTextToRight(int textInx){//Показываение текста заметки при ландшафтной орентации - справа
+        TextNodeFragment fragment = TextNodeFragment.newInstance(textInx);
         FragmentManager fragmentManager = requireActivity().getSupportFragmentManager(); // Создаем менеджер фрагментов
-        Log.e("BAGSSS", "МЕНЕДЖЕР ФРАГМЕНТОВ");
         FragmentTransaction transaction = fragmentManager.beginTransaction(); // Создаем транзакцию
-        Log.e("BAGSSS", "СОЗДАЕМ ТРАНЗАКЦИЮ");
         transaction.addToBackStack("");
-        transaction.replace(R.id.text_node_fragment_land, TextNodeFragment.newInstance(textInx));  // Меняем фрагмент
-        Log.e("BAGSSS", "МЕНЯЕМ ФРАГМЕНТ");
+
+        transaction.replace(R.id.text_node_fragment_land, fragment);  // Меняем фрагмент;
         transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE); //Плавная смена фрагмента
-        Log.e("BAGSSS", "ПЛАВНАЯ СМЕНА");
         transaction.commit();
-        Log.e("BAGSSS", "КОМИТ");
     }
 
 

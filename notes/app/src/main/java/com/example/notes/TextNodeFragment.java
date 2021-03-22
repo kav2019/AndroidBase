@@ -43,16 +43,22 @@ public class TextNodeFragment extends Fragment {
     public static TextNodeFragment newInstance(int nodeInx) {
         TextNodeFragment fragment = new TextNodeFragment();
         Bundle args = new Bundle();
-        args.putInt(ARG_PARAM1, nodeInx);
+        args.putInt(NotesListFragment.KEY_BUNDL, nodeInx);
         fragment.setArguments(args);
         return fragment;
+    }
+
+    @Override
+    public void onSaveInstanceState(@NonNull Bundle bundle) {
+        bundle.putInt(NotesListFragment.KEY_BUNDL, mNodeInd);
+        super.onSaveInstanceState(bundle);
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mNodeInd = getArguments().getInt(ARG_PARAM1, -1);
+            mNodeInd = getArguments().getInt(NotesListFragment.KEY_BUNDL, -1);
         }
     }
 
